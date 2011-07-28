@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <title>Xbox Game Voting</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style.css" />
+</head>
+<body>
+    <div class="page">
+        <h1>Xbox Game Voting Application</h1>
+        <div class="metanav">
+            {% block session %}{% endblock %}
+        </div>
+        {% block flash %}{% endblock %}
+        {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
