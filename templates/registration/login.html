@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body %}
+	{% if form.errors %}
+		<ul class="errorlist">
+			<li>You entered an invalid username or password.</li>
+		</url>
+		<br/>
+	{% endif %}
+	<form method="POST" action="{% url django.contrib.auth.views.login %}">
+		{% csrf_token %}
+		<input type="hidden" name="next" value=" {{ next }}" />
+		{{ form.username.label_tag }}:
+		{{ form.username }}<br/>
+		{{ form.password.label_tag }}:
+		{{ form.password }}<br/>
+		<input type="submit" value="Login" />
+	</form>
+{% endblock %}
