@@ -10,6 +10,8 @@ urlpatterns = patterns('votes.views',
                                     queryset=Game.objects.wish_list(),
                                     context_object_name="game_list", template_name='index.html'), name="index"),
 
+    url(r'^wishes/$', 'wishes', { 'template_name': 'wishes.html' }, 'wishes'),
+    url(r'^owned/$', 'owned', { 'template_name': 'owned.html' }, 'owned'),
     url(r'^add/$', 'add_game', { 'template_name': 'index.html' }, name='add_game'),
 
     url(r'^register/$', 'register', { 'template_name': 'registration/register.html' }, 'register'),

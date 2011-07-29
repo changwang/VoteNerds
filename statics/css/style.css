@@ -1,10 +1,11 @@
 body {
     font-family: sans-serif;
-    background: #eee;
+    background: url("../img/background.png");
 }
 
 a.xgva {
     text-decoration: none;
+    text-align: center;
 }
 
 a, h1, h2 {
@@ -26,7 +27,7 @@ h2 {
 
 .page {
     margin: 2em auto;
-    width: 35em;
+    width: 40em;
     border: 5px solid #ccc;
     padding: 0.8em;
     background: white;
@@ -44,6 +45,10 @@ h2 {
 
 .entries li h2 {
     margin-left: -1em;
+}
+
+.entry {
+    color: #377BA8;
 }
 
 .add-game {

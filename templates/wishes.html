@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Game Wished</title>
+{% endblock %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url add_game %}" class="add-game">
+            {% csrf_token %}
+            <dl>
+                <dt>Title:</dt>
+                <dd><input type="text" size="30" name="title" /></dd>
+                <dd><input type="submit" value="Add" /></dd>
+            </dl>
+        </form>
+    {% endif %}
+    
+    <ul class="entries">
+    {% for game in wish_list %}
+        <li>
+            <span class="entry">
+                {{ game.title|escape }}
+                <a href="#"><img src="{{ STATIC_URL }}img/thumb-up.png" alt="Click Me to Vote"></a>
+            </span>
+        </li>
+    {% empty %}
+        <li><span class="entry">"Oh My, there is no game wanted!"</span></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,4 +1,5 @@
 import sqlite3
+import random
 from datetime import datetime
 
 DATABASE = 'nerds.sqlite'
@@ -27,12 +28,30 @@ cur = conn.cursor()
 
 # clear table before inserting new records
 cur.execute("DELETE FROM votes_game")
+cur.execute("DELETE FROM votes_vote")
 
 # insert dummy video game inforamtion
 for g in GAMES:
-    cur.execute("""
-        INSERT INTO votes_game ("title", "owned", "created") values (?, ?, ?)
-    """, (g, False, datetime.now()))
+    cur.execute("""INSERT INTO votes_game ("title", "owned", "created") values (?, ?, ?)""",
+        (g, random.random() > 0.5, datetime.now()))
 
 conn.commit()
+
+# insert vote records for owned games
+cur.execute("SELECT * FROM votes_game WHERE owned = 1")
+rows = cur.fetchall()
+
+for row in rows:
+    cur.execute("""INSERT INTO votes_vote ("game_id", "count", "created") values (?, ?, ?)""",
+                (row[0], random.randint(10, 50), datetime.now()))
+
+# insert vote records for wished games
+cur.execute("SELECT * FROM votes_game WHERE owned = 0")
+rows = cur.fetchall()
+for row in rows:
+    cur.execute("""INSERT INTO votes_vote ("game_id", "count", "created") values (?, ?, ?)""",
+                (row[0], random.randint(1, 10), datetime.now()))
+
+conn.commit()
+
 cur.close()

@@ -12,9 +12,7 @@ CREATE TABLE "votes_game" (
 DROP TABLE if EXISTS votes_vote;
 
 CREATE TABLE "votes_vote" (
-    "id" integer NOT NULL PRIMARY KEY,
-    "game_id" integer NOT NULL REFERENCES "votes_game" ("id"),
+    "game_id" integer NOT NULL PRIMARY KEY REFERENCES "votes_game" ("id"),
     "count" integer unsigned NOT NULL,
-    "created" datetime NOT NULL,
-    UNIQUE ("id", "game_id")
+    "created" datetime NOT NULL
 );

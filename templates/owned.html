@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
+{% block title %}
+    <title>Game Owned</title>
+{% endblock %}
+
 {% block body %}
     <ul class="entries">
-    {% for game in game_list %}
+    {% for game in owned_list %}
         <li><span class="entry">{{ game.title|escape }}</span></li>
     {% empty %}
-        <li><span class="entry">"My God, There is not game voted!"</span></li>
+        <li><span class="entry">"Oh My, there is no game bought!"</span></li>
     {% endfor %}
     </ul>
 {% endblock %}
