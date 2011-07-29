@@ -9,6 +9,6 @@ urlpatterns = patterns('votes.views',
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
-	url(r'^login/$', 'login', { 'template_name': 'registration/login.html' }, 'login'),
-	url(r'^logout/$', 'logout', { 'template_name': 'registration/logout.html', 'next_page': '/' }, 'logout'),
+    url(r'^login/$', 'login', { 'template_name': 'registration/login.html' }, 'login'),
+    url(r'^logout/$', 'logout', { 'template_name': 'registration/logout.html', 'next_page': '/' }, 'logout'),
 )

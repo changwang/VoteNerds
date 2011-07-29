@@ -1,19 +1,20 @@
 -- create games table
-DROP TABLE if EXISTS games;
+DROP TABLE if EXISTS votes_game;
 
-CREATE TABLE games (
-  id INTEGER NOT NULL PRIMARY KEY autoincrement,
-  title VARCHAR(256) NOT NULL UNIQUE,
-  owned BOOL NOT NULL,
-  created TIMESTAMP NOT NULL
+CREATE TABLE "votes_game" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "title" varchar(256) NOT NULL UNIQUE,
+    "owned" bool NOT NULL,
+    "created" datetime NOT NULL
 );
 
 -- create votes table
-DROP TABLE if EXISTS votes;
+DROP TABLE if EXISTS votes_vote;
 
-CREATE TABLE votes (
-  id INTEGER NOT NULL,
-  game_id INTEGER NOT NULL REFERENCES "games" ("id"),
-  created TIMESTAMP NOT NULL,
-  PRIMARY KEY (id, game_id)
+CREATE TABLE "votes_vote" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "game_id" integer NOT NULL REFERENCES "votes_game" ("id"),
+    "count" integer unsigned NOT NULL,
+    "created" datetime NOT NULL,
+    UNIQUE ("id", "game_id")
 );
