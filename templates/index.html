@@ -1,7 +1,22 @@
 {% extends "base.html" %}
 
 {% block body %}
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url add_game %}" class="add-game">
+            {% csrf_token %}
+            <dl>
+                <dt>Title:</dt>
+                <dd><input type="text" size="30" name="title" /></dd>
+                <dd><input type="submit" value="Add" /></dd>
+            </dl>
+        </form>
+    {% endif %}
+    
     <ul class="entries">
-        <li><h2>Hello World</h2></li>
+    {% for game in game_list %}
+        <li><h2>{{ game.title|escape }}</h2></li>
+    {% empty %}
+        <li><em>"My God, There is not game voted!"</em></li>
+    {% endfor %}
     </ul>
 {% endblock %}

@@ -4,20 +4,27 @@
     <title>Xbox Game Voting</title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
 </head>
+
 <body>
     <div class="page">
-        <h1>Xbox Game Voting Application</h1>
+        <a class="xgva" href="{% url index %}"><h1>Xbox Game Voting Application</h1></a>
         <div class="metanav">
-            {% block session %}
-                {% if user.is_authenticated %}                    
-                    <a href="{% url django.contrib.auth.views.logout %}">Logout</a>                
-                {% else %}                    
-                    <a href="{% url django.contrib.auth.views.login %}">Log in</a> |
-                    <a href="{% url register %}">Register</a>
-                {% endif %}
-            {% endblock %}
+            {% if user.is_authenticated %}
+                <a href="{% url django.contrib.auth.views.logout %}">Logout</a>
+            {% else %}
+                <a href="{% url django.contrib.auth.views.login %}">Log in</a> |
+                <a href="{% url register %}">Register</a>
+            {% endif %}
         </div>
-        {% block flash %}{% endblock %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="flash">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% block body %}{% endblock %}
     </div>
 </body>

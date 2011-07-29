@@ -1,10 +1,20 @@
 from django.db import models
 
 # Create your models here.
+class GameManager(models.Manager):
+    def wish_come_true(self):
+        return super(GameManager, self).get_query_set().filter(owned=True)
+
+    def wish_list(self):
+        return super(GameManager, self).get_query_set().filter(owned=False)
+
 class Game(models.Model):
     title = models.CharField("Title", max_length=256, unique=True)
     owned = models.BooleanField("Owned", default=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    #objects = models.Manager()
+    objects = GameManager()
 
     def __unicode__(self):
         return self.title

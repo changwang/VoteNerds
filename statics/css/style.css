@@ -1,6 +1,10 @@
 body {
     font-family: sans-serif;
-    background: #EEE;
+    background: #eee;
+}
+
+a.xgva {
+    text-decoration: none;
 }
 
 a, h1, h2 {
@@ -8,12 +12,12 @@ a, h1, h2 {
 }
 
 h1, h2 {
-    font-family: 'Helvetica', serif;
-    margin: 0;
+    font-family: 'Georgia',
+    serif; margin: 0;
 }
 
 h1 {
-    border-bottom: 2px solid #EEE;
+    border-bottom: 2px solid #eee;
 }
 
 h2 {
@@ -23,7 +27,9 @@ h2 {
 .page {
     margin: 2em auto;
     width: 35em;
-    border: 5px solid #CCC;
+    border: 5px solid #ccc;
+    padding: 0.8em;
+    background: white;
 }
 
 .entries {
@@ -40,12 +46,12 @@ h2 {
     margin-left: -1em;
 }
 
-.add-entry {
+.add-game {
     font-size: 0.9em;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid #ccc;
 }
 
-.add-entry dl {
+.add-game dl {
     font-weight: bold;
 }
 
@@ -54,7 +60,7 @@ h2 {
     font-size: 0.8em;
     padding: 0.3em;
     margin-bottom: 1em;
-    background: #FAFAFA;
+    background: #fafafa;
 }
 
 .flash {
@@ -66,4 +72,48 @@ h2 {
 .error {
     background: #F0D6D6;
     padding: 0.5em;
+}
+
+.login {
+    font-size: 0.9em;
+}
+
+.lbl {
+    margin: 10px 10px;
+    color: #377BA8;
+}
+
+.ipt {
+    margin: 10px 10px;
+}
+
+.register {
+    font-family: "Helvetica", serif;
+}
+
+.register td {
+    padding-left: 10px;
+}
+
+.register th {
+    font-size: 0.9em;
+    color: #377BA8;
+    text-align: right;
+}
+
+.helptext {
+    font-size: 0.5em;
+    color: #303030;
+}
+
+.errorlist {
+    list-style: none;
+    font-family: "Helvetica", serif;
+    color: #ff0000;
+    font-size: 0.8em;
+}
+
+.errorlist li {
+    vertical-align: middle;
+    float: right;
 }

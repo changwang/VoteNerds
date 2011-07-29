@@ -4,16 +4,15 @@
 	{% if form.errors %}
 		<ul class="errorlist">
 			<li>You entered an invalid username or password.</li>
-		</url>
+		</ul>
 		<br/>
 	{% endif %}
-	<form method="POST" action="{% url django.contrib.auth.views.login %}">
+	<form method="POST" action="{% url django.contrib.auth.views.login %}" class="login">
 		{% csrf_token %}
-		<input type="hidden" name="next" value=" {{ next }}" />
-		{{ form.username.label_tag }}:
-		{{ form.username }}<br/>
-		{{ form.password.label_tag }}:
-		{{ form.password }}<br/>
-		<input type="submit" value="Login" />
+		<div class="lbl">{{ form.username.label_tag }}:</div>
+		<div class="ipt">{{ form.username }}</div>
+		<div class="lbl">{{ form.password.label_tag }}:</div>
+		<div class="ipt">{{ form.password }}</div>
+		<div class="ipt"><input type="submit" value="Login" /></div>
 	</form>
 {% endblock %}
