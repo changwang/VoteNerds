@@ -27,4 +27,4 @@ class Vote(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
-        return self.game.title + "has" + str(self.count) + "votes"
+        return self.game.title + " has " + str(self.count) + " votes"

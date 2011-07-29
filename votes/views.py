@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
-from votes.models import Game
+from votes.models import Game, Vote
 
 @require_POST
 @login_required
@@ -38,9 +38,13 @@ def register(request, template_name="registration/register.html"):
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 def wishes(request, template_name="wishes.html"):
-    wish_list = Game.objects.wish_list()
+    vote_list = Vote.objects.filter(game__owned=0).order_by('-count')
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 def owned(request, template_name="owned.html"):
     owned_list = Game.objects.owned_list()
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
+
+@login_required
+def thumb_up(request):
+    pass

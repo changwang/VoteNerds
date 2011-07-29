@@ -7,7 +7,7 @@ urlpatterns = patterns('votes.views',
     # votes
     # url(r'^$', 'index', { 'template_name': 'index.html' }, 'index'),
     url(r'^$', ListView.as_view(model=Game,
-                                    queryset=Game.objects.wish_list(),
+                                    queryset=Game.objects.owned_list(),
                                     context_object_name="game_list", template_name='index.html'), name="index"),
 
     url(r'^wishes/$', 'wishes', { 'template_name': 'wishes.html' }, 'wishes'),

@@ -41,6 +41,8 @@ h2 {
 
 .entries li {
     margin: 0.8em 1.2em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #EFEFEF;
 }
 
 .entries li h2 {
@@ -51,9 +53,30 @@ h2 {
     color: #377BA8;
 }
 
+.count {
+    font-family: fantasy ;
+    font-size: 0.8em;
+    color: #0404ba;
+    float: right;
+}
+
+.thumb-up {
+    width: 16px;
+    height: 16px;
+}
+
+fieldset {
+    border: 2px solid #EEE;
+}
+
+legend {
+    padding: 0.2em 0.2em;
+    font-size: 120%;
+    color: #377BA8;
+}
+
 .add-game {
     font-size: 0.9em;
-    border-bottom: 1px solid #ccc;
 }
 
 .add-game dl {
@@ -66,6 +89,14 @@ h2 {
     padding: 0.3em;
     margin-bottom: 1em;
     background: #fafafa;
+}
+
+.metanav a {
+    text-decoration: none;
+}
+
+.metanav a:hover {
+    color: #0404ba;
 }
 
 .flash {
@@ -102,6 +133,7 @@ h2 {
 
 .register th {
     font-size: 0.9em;
+    font-weight: normal;
     color: #377BA8;
     text-align: right;
 }

@@ -8,20 +8,21 @@
     {% if user.is_authenticated %}
         <form method="post" action="{% url add_game %}" class="add-game">
             {% csrf_token %}
-            <dl>
-                <dt>Title:</dt>
-                <dd><input type="text" size="30" name="title" /></dd>
-                <dd><input type="submit" value="Add" /></dd>
-            </dl>
+            <fieldset>
+                <legend>Make Your Dream Come True</legend>
+                <label for="game" style="float: left; margin-right: 0.5em; color: #377BA8;">Title:</label>
+                <input type="text" size="60" name="game" id="game" style="width: 90%" /><br/>
+                <input type="submit" value="Add" style="float: right; margin-top: 0.5em; margin-right: 18px;" />
+            </fieldset>
         </form>
     {% endif %}
     
     <ul class="entries">
-    {% for game in wish_list %}
+    {% for v in vote_list %}
         <li>
             <span class="entry">
-                {{ game.title|escape }}
-                <a href="#"><img src="{{ STATIC_URL }}img/thumb-up.png" alt="Click Me to Vote"></a>
+                {{ v.game.title|escape }}&nbsp&nbsp&nbsp<span class="count">({{ v.count }} vote{{ v.count|pluralize }})</span>
+                <a href="#"><img class="thumb-up" src="{{ STATIC_URL }}img/thumb-up.png" alt="Click Me to Vote"></a>
             </span>
         </li>
     {% empty %}
