@@ -39,8 +39,10 @@ def add_game(request):
         except Game.DoesNotExist:
             if added_today:
                 added_time = datetime.datetime.strptime(request.COOKIES[settings.COOKIE_ADD_GAME_TIME], settings.COOKIE_TIME_FORMAT)
-                if one_day_limit(added_time) or weekend():
+                if one_day_limit(added_time):
                     messages.info(request, "One day's limit, try it tomorrow, or buy me a coffee!")
+                elif weekend():
+                    messages.info(request, "Give me a break, do it on work days!")
                 else:
                     game = new_game(title)
                     messages.info(request, "Game '%s' has been added successfully!" % game.title)
@@ -95,8 +97,10 @@ def thumb_up(request, game_id):
         voted_today = True
     if voted_today:
         voted_time = datetime.datetime.strptime(request.COOKIES[settings.COOKIE_VOTE_GAME_TIME], settings.COOKIE_TIME_FORMAT)
-        if one_day_limit(voted_time) or weekend():
+        if one_day_limit(voted_time):
             messages.info(request, "One day's limit, try it tomorrow, or buy me a coffee!")
+        elif weekend():
+            messages.info(request, "Give me a break, do it on work days!")
         else:
             vote_plus(game_id)
             messages.info(request, "Vote has been submitted, stay tuned!")
