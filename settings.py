@@ -1,6 +1,7 @@
 # Django settings for VoteNerds project.
 
 import os
+from datetime import datetime, timedelta
 
 # for later absolute path reference
 PROJ_DIR = os.path.dirname(__file__)
@@ -158,6 +159,7 @@ LOGGING = {
 COOKIE_ADD_GAME_TIME = "add_game_time"
 COOKIE_VOTE_GAME_TIME = "vote_game_time"
 COOKIE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
+COOKIE_EXPIRATION = datetime.now() + timedelta(days=1)
 
 # Log in settings
 LOGIN_URL = "/login"

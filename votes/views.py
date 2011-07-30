@@ -44,11 +44,11 @@ def add_game(request):
                 else:
                     game = new_game(title)
                     messages.info(request, "Game '%s' has been added successfully!" % game.title)
-                    response.set_cookie(settings.COOKIE_ADD_GAME_TIME, datetime.datetime.now())
+                    response.set_cookie(settings.COOKIE_ADD_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
             else:
                 game = new_game(title)
                 messages.info(request, "Game '%s' has been added successfully!" % game.title)
-                response.set_cookie(settings.COOKIE_ADD_GAME_TIME, datetime.datetime.now())
+                response.set_cookie(settings.COOKIE_ADD_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
         else:
             messages.info(request, "Game '%s' already existed! You don't want to buy it twice, don't you?" % game.title)
     return response
@@ -100,9 +100,9 @@ def thumb_up(request, game_id):
         else:
             vote_plus(game_id)
             messages.info(request, "Vote has been submitted, stay tuned!")
-            response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now())
+            response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
     else:
         vote_plus(game_id)
         messages.info(request, "Vote has been submitted, stay tuned!")
-        response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now())
+        response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
     return response
