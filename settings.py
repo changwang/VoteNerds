@@ -103,6 +103,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    # third party middleware
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'VoteNerds.urls'
@@ -125,6 +128,7 @@ INSTALLED_APPS = (
     'VoteNerds.votes',
 
     # third party apps
+    # 'debug_toolbar',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,5 +154,14 @@ LOGGING = {
     }
 }
 
+# vote settings
+COOKIE_ADD_GAME_TIME = "add_game_time"
+COOKIE_VOTE_GAME_TIME = "vote_game_time"
+COOKIE_TIME_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
+
 # Log in settings
+LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
+
+# third party apps settings
+INTERNAL_IPS = ('127.0.0.1',)

@@ -9,6 +9,7 @@
 	{% endif %}
 	<form method="POST" action="{% url django.contrib.auth.views.login %}" class="login">
 		{% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
 		<div class="lbl">{{ form.username.label_tag }}:</div>
 		<div class="ipt">{{ form.username }}</div>
 		<div class="lbl">{{ form.password.label_tag }}:</div>

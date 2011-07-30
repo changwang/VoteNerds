@@ -4,16 +4,22 @@
     <title>Game Wished</title>
 {% endblock %}
 
+{% block jscript %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/add_game.js"></script>
+{% endblock %}
+
 {% block body %}
     {% if user.is_authenticated %}
-        <form method="post" action="{% url add_game %}" class="add-game">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Make Your Dream Come True</legend>
-                <label for="game" style="float: left; margin-right: 0.5em; color: #377BA8;">Title:</label>
-                <input type="text" size="60" name="game" id="game" style="width: 90%" /><br/>
-                <input type="submit" value="Add" style="float: right; margin-top: 0.5em; margin-right: 18px;" />
-            </fieldset>
+        <form method="post" action="{% url add_game %}" class="add-game" id="add_game_form">
+            <div id="add_game">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Make Your Dream Come True</legend>
+                    <label for="game" style="float: left; margin-right: 0.5em; color: #377BA8;">Title:</label>
+                    <input type="text" size="60" name="game" id="game" style="font-size: 150%; width: 90%; height: 30px;" /><br/>
+                    <input type="submit" value="Add" id="add_game_button" style="float: right; margin-top: 0.5em; margin-right: 18px;" />
+                </fieldset>
+            </div>
         </form>
     {% endif %}
     
@@ -21,8 +27,8 @@
     {% for v in vote_list %}
         <li>
             <span class="entry">
-                {{ v.game.title|escape }}&nbsp&nbsp&nbsp<span class="count">({{ v.count }} vote{{ v.count|pluralize }})</span>
-                <a href="#"><img class="thumb-up" src="{{ STATIC_URL }}img/thumb-up.png" alt="Click Me to Vote"></a>
+               {{ v.game.title|escape }}&nbsp&nbsp&nbsp<span class="count">( {{ v.count }} vote{{ v.count|pluralize }} )</span>
+                    <a href="{% url thumb_up v.game.id %}"><img class="thumb-up" src="{{ STATIC_URL }}img/thumb-up.png" alt="Click Me to Vote"></a>
             </span>
         </li>
     {% empty %}
