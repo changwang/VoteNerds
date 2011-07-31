@@ -23,6 +23,8 @@ class Game(models.Model):
     """
     title = models.CharField("Title", max_length=256, unique=True)
     owned = models.BooleanField("Owned", default=False)
+    # let user watches amazon review
+    link = models.URLField("Amazon Link", max_length=256, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = GameManager()

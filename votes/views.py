@@ -5,19 +5,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.forms import UserCreationForm
-from django.core import urlresolvers
-from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
 from votes.forms import GameBoughtForm
 from votes.models import Game, Vote
 from votes.utilities import one_day_limit, weekend
 
-def new_game(title):
+def new_game(title, link=""):
     """
     creates a new game record with given title.
     """
-    game = Game.objects.create(title=title, owned=False)
+    game = Game.objects.create(title=title, owned=False, link=link)
     game.save()
     # each time user creates a new game record,
     # it means this game is voted once.
@@ -41,8 +39,6 @@ def add_game(request):
     if weekend():
         messages.info(request, _("Give me a break, do it on workdays!"))
     else:
-        postdata = request.POST.copy()
-        title = postdata.get("game", "")
         # if add game cookie is set and the consecutive operation is within one day,
         # display the flash message
         # if user doesn't type anything, display the flash message
@@ -50,8 +46,11 @@ def add_game(request):
                 (one_day_limit(datetime.datetime.strptime(request.COOKIES[settings.COOKIE_ADD_GAME_TIME], settings.COOKIE_TIME_FORMAT))):
             messages.info(request, _("One day's limit, try it tomorrow, or buy me a coffee!"))
         else:
+            postdata = request.POST.copy()
+            title = postdata.get("game", "")
+            link = postdata.get("amazon", "")
             # if user doens't type anything, display the flash message
-            if title == "":
+            if title == "" or title.strip() == "":
                 messages.info(request, _("Game title cannot be empty, try something meaningful!"))
             else:
                 try:
@@ -59,7 +58,7 @@ def add_game(request):
                     game = Game.objects.get(title__iexact=title)
                 except Game.DoesNotExist:
                     # if the game doesn't exist, create a new record, with title case
-                    game = new_game(title.title())
+                    game = new_game(title.title(), link)
                     messages.info(request, _("Game '%s' has been added successfully!" % game.title))
                     # set cookie expiration is one day
                     response.set_cookie(settings.COOKIE_ADD_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
@@ -100,7 +99,7 @@ def thumb_up(request, game_id):
             messages.info(request, _("One day's limit, try it tomorrow, or buy me a coffee!"))
         else:
             vote_plus(game_id)
-            messages.info(request, _("Vote has been submitted, stay tuned!"))
+            messages.info(request, _("Vote has been submitted successfully, stay tuned!"))
             response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
     return response
 

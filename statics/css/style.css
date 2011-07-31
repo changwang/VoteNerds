@@ -3,6 +3,10 @@ body {
     background: url("../img/background.png");
 }
 
+a {
+    text-decoration: none;
+}
+
 a.xgva {
     text-decoration: none;
     text-align: center;
@@ -53,6 +57,10 @@ h2 {
     color: #377BA8;
 }
 
+a.amazon {
+    text-decoration: none;
+}
+
 .count {
     font-family: fantasy ;
     font-size: 0.8em;
@@ -91,7 +99,7 @@ legend {
     background: #fafafa;
 }
 
-.metanav a {
+a.metanav {
     text-decoration: none;
 }
 
