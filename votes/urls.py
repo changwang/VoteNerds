@@ -10,12 +10,12 @@ urlpatterns = patterns('votes.views',
                                 context_object_name="game_list",
                                 template_name='index.html'), name="index"),
 
-    url(r'^wishes/$', 'wishes', { 'template_name': 'wishes.html' }, 'wishes'),
-    url(r'^owned/$', 'owned', { 'template_name': 'owned.html' }, 'owned'),
+    url(r'^wishes/$', 'wishes', {}, 'wishes'),
+    url(r'^owned/$', 'owned', {}, 'owned'),
     url(r'^add-game/$', 'add_game', {}, 'add_game'),
     url(r'^thumb-up/(?P<game_id>\d+)/$', 'thumb_up', {}, 'thumb_up'),
-    url(r'^buy/$', 'buy_game', { 'template_name': 'buy.html' }, 'buy_game'),
-    url(r'^register/$', 'register', { 'template_name': 'registration/register.html' }, 'register'),
+    url(r'^buy/$', 'buy_game', {}, 'buy_game'),
+    url(r'^register/$', 'register', {}, 'register'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',

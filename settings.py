@@ -166,4 +166,4 @@ LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
 
 # third party apps settings
-INTERNAL_IPS = ('127.0.0.1',)
+# INTERNAL_IPS = ('127.0.0.1',)

@@ -1,0 +1,11 @@
+<ul class="entries">
+    {% for game in game_list %}
+        <li>
+            <a href="{% if game.link != "" %}{{ game.link }}{% else %}#{% endif %}" class="amazon" {% if game.link != "" %}target="_blank"{% endif %}>
+                <span class="entry">{{ game.title|escape }}</span>
+            </a>
+        </li>
+    {% empty %}
+        <li><span class="entry">"Oh My, there is no game bought!"</span></li>
+    {% endfor %}
+</ul>

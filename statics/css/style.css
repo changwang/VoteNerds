@@ -3,11 +3,7 @@ body {
     background: url("../img/background.png");
 }
 
-a {
-    text-decoration: none;
-}
-
-a.xgva {
+a.navtitle {
     text-decoration: none;
     text-align: center;
 }
@@ -17,12 +13,12 @@ a, h1, h2 {
 }
 
 h1, h2 {
-    font-family: 'Georgia',
+    font-family: "Georgia", "Helvetica", "sans-serif"
     serif; margin: 0;
 }
 
 h1 {
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #EEEEEE;
 }
 
 h2 {
@@ -32,7 +28,7 @@ h2 {
 .page {
     margin: 2em auto;
     width: 40em;
-    border: 5px solid #ccc;
+    border: 5px solid #CCCCCC;
     padding: 0.8em;
     background: white;
 }
@@ -64,7 +60,7 @@ a.amazon {
 .count {
     font-family: fantasy ;
     font-size: 0.8em;
-    color: #0404ba;
+    color: #0404BA;
     float: right;
 }
 
@@ -74,7 +70,7 @@ a.amazon {
 }
 
 fieldset {
-    border: 2px solid #EEE;
+    border: 2px solid #EEEEEE;
 }
 
 legend {
@@ -96,15 +92,15 @@ legend {
     font-size: 0.8em;
     padding: 0.3em;
     margin-bottom: 1em;
-    background: #fafafa;
+    background: #FAFAFA;
 }
 
-a.metanav {
+.metanav a {
     text-decoration: none;
 }
 
 .metanav a:hover {
-    color: #0404ba;
+    color: #0404BA;
 }
 
 .flash {
@@ -132,7 +128,7 @@ a.metanav {
 }
 
 .register {
-    font-family: "Helvetica", serif;
+    font-family: "Helvetica", sans-serif;
 }
 
 .register td {
@@ -153,8 +149,8 @@ a.metanav {
 
 .errorlist {
     list-style: none;
-    font-family: "Helvetica", serif;
-    color: #ff0000;
+    font-family: "Helvetica", sans-serif;
+    color: #FF0000;
     font-size: 0.8em;
 }
 

@@ -5,6 +5,7 @@ CREATE TABLE "votes_game" (
     "id" integer NOT NULL PRIMARY KEY,
     "title" varchar(256) NOT NULL UNIQUE,
     "owned" bool NOT NULL,
+    "link" varchar(256),
     "created" datetime NOT NULL
 );
 

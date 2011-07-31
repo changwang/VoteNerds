@@ -170,5 +170,5 @@ def owned(request, template_name="owned.html"):
     lists all the games have been hold,
     sort them alphabetically without showing vote count.
     """
-    owned_list = Game.objects.owned_list()
-    return render_to_response(template_name, { "owned_list": owned_list }, context_instance=RequestContext(request))
+    game_list = Game.objects.owned_list()
+    return render_to_response(template_name, { "game_list": game_list }, context_instance=RequestContext(request))
