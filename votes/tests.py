@@ -1,8 +1,9 @@
 """
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+before running test, make sure dump the database value first
 
-Replace this with more appropriate tests for your application.
+$ python manage.py dumpdata --indent=4 votes >votes/fixtures/test_votes.json
+
+because the test case use dumped data as fixtures
 """
 
 from django.test import TestCase
@@ -23,7 +24,7 @@ class IndexViewTestCase(TestCase):
 
     def test_index_show_sort_game(self):
         games = self.response.context['game_list']
-        sorted_games = sorted(games)
+        sorted_games = sorted(games, cmp=lambda a, b: cmp(a.title, b.title))
         self.assertEqual(len(games), len(sorted_games))
         for i in range(len(games)):
             self.assertEqual(games[i], sorted_games[i])
@@ -70,8 +71,8 @@ class OwnedViewTestCase(TestCase):
         self.assertEqual('owned.html', template_names[0])
 
     def test_owned_sort_by_title(self):
-        games = self.response.context['owned_list']
-        sorted_games = sorted(games)
+        games = self.response.context['game_list']
+        sorted_games = sorted(games, cmp=lambda a, b: cmp(a.title, b.title))
         self.assertEqual(len(games), len(sorted_games))
         for i in range(len(games)):
             self.assertEqual(games[i], sorted_games[i])
