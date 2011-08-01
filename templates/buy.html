@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Make Dreams Come True</title>
+{% endblock %}
+
+{% block jscript %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ul_style.js"></script>
+{% endblock %}
+
+{% block body %}
+    <form method="post" action="." id="buy_game_form">
+        {% csrf_token %}
+        {{ games_form.as_p }}
+        <br/>
+        <input type="submit" value="Buy" />
+    </form>
+{% endblock %}

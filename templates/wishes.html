@@ -4,10 +4,6 @@
     <title>Game Wished</title>
 {% endblock %}
 
-{% block jscript %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/add_game.js"></script>
-{% endblock %}
-
 {% block body %}
     {% if user.is_authenticated %}
         <form method="post" action="{% url add_game %}" class="add-game" id="add_game_form">

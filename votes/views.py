@@ -9,6 +9,7 @@ from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 from django.views.decorators.http import require_POST
 from django.utils.translation import ugettext as _
+from votes.forms import GameBoughtForm
 from votes.models import Game, Vote
 from votes.utilities import one_day_limit, weekend
 
@@ -102,6 +103,35 @@ def thumb_up(request, game_id):
             messages.info(request, _("Vote has been submitted, stay tuned!"))
             response.set_cookie(settings.COOKIE_VOTE_GAME_TIME, datetime.datetime.now(), expires=settings.COOKIE_EXPIRATION)
     return response
+
+@login_required
+def buy_game(request, template_name="buy.html"):
+    """
+    marks the game as owned.
+    """
+    if request.method == "POST":
+        games = request.POST.getlist("games")
+        if not games:
+            # if no game selected, directly display the flash message
+            messages.info(request, _("Don't you want to buy something this time?"))
+            return redirect('buy_game')
+        else:
+            for g in games:
+                # go through all selections, mark it owned
+                try:
+                    ga = Game.objects.get(id=int(g))
+                    ga.owned = True
+                    ga.save()
+                except Game.DoesNotExist:
+                    messages.info(request, _("This is wired, I can't find the game, try it again"))
+                    return redirect('buy_game')
+            messages.info(request, _("Games have been marked as owned, enjoy!"))
+            return redirect('index')
+    else:
+        games_form = GameBoughtForm()
+        # put all games which are not owned into choices
+        games_form.fields['games'].choices = [(v.game.id, v.game.title) for v in Vote.objects.filter(game__owned=0).order_by('-count', 'created')]
+    return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 def register(request, template_name="registration/register.html"):
     """
