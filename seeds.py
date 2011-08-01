@@ -1,3 +1,8 @@
+"""
+this module is similar to RoR's seeds.
+Use it to create test data.
+>>> python seeds.py
+"""
 import sqlite3
 import random
 from datetime import datetime
