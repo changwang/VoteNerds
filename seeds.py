@@ -70,9 +70,13 @@ conn = sqlite3.connect(DATABASE)
 cur = conn.cursor()
 
 # clear table before inserting new records
+print "============================================="
+print "Removing old records"
 cur.execute("DELETE FROM votes_game")
 cur.execute("DELETE FROM votes_vote")
 
+print "============================================="
+print "Creating game records"
 # insert dummy video game inforamtion
 for g in GAMES:
     cur.execute("""INSERT INTO votes_game ("title", "owned", "link", "created") VALUES (?, ?, ?, ?)""",
@@ -80,6 +84,8 @@ for g in GAMES:
 
 conn.commit()
 
+print "============================================="
+print "Creating vote records"
 # insert vote records for games
 cur.execute("SELECT * FROM votes_game")
 rows = cur.fetchall()
@@ -91,3 +97,8 @@ for row in rows:
 conn.commit()
 
 cur.close()
+
+
+print "============================================="
+print "Dummy data have been successfully created!"
+print "============================================="
